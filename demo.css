@@ -1,0 +1,21 @@
+body {
+    background: #333;
+    color: #fff;
+    font: 300 100.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+#tools {
+    height: 60px;
+    margin: 0 auto;
+    text-align: left;
+    width: 640px;
+}
+#canvas {
+    background: #fff;
+    height: 480px;
+    margin: 0 auto;
+    text-align: left;
+    width: 640px;
+}
