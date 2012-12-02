@@ -1,7 +1,7 @@
 (function() {
 
     var paper = Raphael("canvas", 640, 480);
-    var type = null;
+    var figure = null;
 
     function posRelativeToElement(elem, ev) {
         var $elem = $(elem),
@@ -14,28 +14,37 @@
         return mousePos;
     };
 
-    $(function() {
-       var circle = paper.circle(320, 240, 200);
-        circle.attr("fill", "#00f");
-        circle.attr("stroke", "#007");
-    });
+    function distance(a, b) {
+        var x = b.x - a.x;
+        var y = b.y - a.y;
+
+        return Math.sqrt(x*x + y*y);
+    }
 
     $("#canvas").on("click", function(e) {
         var mousePos = posRelativeToElement(this, e);
-        alert("X: " + mousePos.x + "  Y: " + mousePos.y);
+        if (figure) {
+            if (!figure.a) {
+                figure.a = mousePos;
+            } else if (!figure.b) {
+                figure.b = mousePos;
+                paper[figure.type](figure.a.x, figure.a.y, distance(figure.a, figure.b));
+                figure = null;
+            }
+        }
         mousePos = null;
     });
 
     $("#clear").on("click", function() {
         paper.clear();
-        type = null;
+        figure = null;
     });
 
     $("#circle").on("click", function() {
-        type = "circle";
+        figure = { type: "circle" };
     });
 
     $("#rectangle").on("click", function() {
-        type = "rectangle";
+        figure = { type: "rectangle" };
     });
 }());
