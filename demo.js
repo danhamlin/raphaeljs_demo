@@ -36,7 +36,7 @@
                 figure.a = mousePos;
             } else if (!figure.b) {
                 figure.b = mousePos;
-                paper[figure.type](figure.a.x, figure.a.y, distance(figure.a, figure.b));
+                figure.draw();
                 figure = null;
             }
         }
@@ -51,12 +51,20 @@
 
     // circle button clicks
     $("#circle").on("click", function() {
-        figure = { type: "circle" };
+        figure = {
+            draw: function() {
+                      paper.circle(this.a.x, this.a.y, distance(this.a, this.b));
+                  }
+        };
     });
 
     // rectangle button clicks
     $("#rectangle").on("click", function() {
-        figure = { type: "rect" };
+        figure = {
+            draw: function() {
+                      paper.rect(this.a.x, this.a.y, this.b.x - this.a.x, this.b.y - this.a.y);
+                  }
+        };
     });
 
 }());
