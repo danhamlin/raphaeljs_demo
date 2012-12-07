@@ -49,6 +49,16 @@
         figure = null;
     });
 
+    // line button clicks
+    $("#line").on("click", function() {
+        figure = {
+            draw: function() {
+                      var pathString = "M" + this.a.x + "," + this.a.y + "L" + this.b.x + "," + this.b.y;
+                      paper.path(pathString);
+                  }
+        };
+    });
+
     // circle button clicks
     $("#circle").on("click", function() {
         figure = {
